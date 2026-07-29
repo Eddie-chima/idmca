@@ -20,7 +20,7 @@ body {
     line-height: 1.6;
 }
 
-/* Navigation Bar */
+/* Navigation & Logo */
 header {
     background: var(--primary-color);
     color: var(--white);
@@ -39,12 +39,24 @@ header {
     padding: 1rem 2rem;
 }
 
-.logo {
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-text {
     font-size: 1.25rem;
     font-weight: bold;
     letter-spacing: 0.5px;
     color: var(--white);
-    text-decoration: none;
 }
 
 .nav-links {
