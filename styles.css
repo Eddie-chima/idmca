@@ -1,37 +1,40 @@
 :root {
-    --primary-color: #0f172a;
-    --accent-color: #2563eb;
-    --gold-color: #d97706;
-    --bg-light: #f8fafc;
-    --text-dark: #334155;
-    --white: #ffffff;
+    --primary-deep: #0B192C;
+    --primary-blue: #1E3E62;
+    --accent-gold: #FF6500;
+    --bg-surface: #F5F7FA;
+    --text-main: #1F2937;
+    --text-muted: #6B7280;
+    --white: #FFFFFF;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: var(--bg-light);
-    color: var(--text-dark);
-    line-height: 1.6;
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+    line-height: 1.7;
+    overflow-x: hidden;
 }
 
-/* Navigation & Logo */
+/* Header & Glassmorphism Navigation */
 header {
-    background: var(--primary-color);
-    color: var(--white);
+    background: rgba(11, 25, 44, 0.95);
+    backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -42,19 +45,19 @@ header {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.85rem;
     text-decoration: none;
 }
 
 .logo-img {
-    height: 40px;
+    height: 44px;
     width: auto;
     object-fit: contain;
 }
 
 .logo-text {
-    font-size: 1.25rem;
-    font-weight: bold;
+    font-size: 1.15rem;
+    font-weight: 700;
     letter-spacing: 0.5px;
     color: var(--white);
 }
@@ -62,66 +65,171 @@ header {
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
+    align-items: center;
 }
 
 .nav-links a {
-    color: #94a3b8;
+    color: #94A3B8;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-gold);
+    transition: var(--transition);
 }
 
 .nav-links a:hover, .nav-links a.active {
     color: var(--white);
 }
 
-/* Hero Section */
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+}
+
+/* Interactive Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color), #1e293b);
+    background: linear-gradient(135deg, var(--primary-deep), var(--primary-blue));
     color: var(--white);
     text-align: center;
-    padding: 5rem 2rem;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
 }
 
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 101, 0, 0.08) 0%, transparent 60%);
+    animation: pulseGlow 10s infinite alternate;
 }
 
-.hero p {
-    font-size: 1.15rem;
-    color: #cbd5e1;
-    max-width: 700px;
+@keyframes pulseGlow {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
     margin: 0 auto;
 }
 
-/* Main Content Layout */
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #CBD5E1;
+    margin-bottom: 2rem;
+}
+
+/* Interactive Quick Navigation Grid (Tactical Focus) */
+.quick-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: -3rem auto 3rem auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.quick-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: var(--text-main);
+    transition: var(--transition);
+    border-top: 4px solid var(--accent-gold);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.quick-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.12);
+}
+
+.quick-card h3 {
+    font-size: 1.1rem;
+    color: var(--primary-deep);
+}
+
+.quick-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Main Container & Interactive Cards */
 .container {
-    max-width: 1000px;
-    margin: 3rem auto;
+    max-width: 1100px;
+    margin: 4rem auto;
     padding: 0 2rem;
 }
 
 .card {
     background: var(--white);
-    padding: 2.5rem;
-    border-radius: 8px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-    margin-bottom: 2rem;
-    border-left: 4px solid var(--accent-color);
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2.5rem;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background-color: var(--accent-gold);
+}
+
+.card:hover {
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
 }
 
 .card h2 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
+    color: var(--primary-deep);
+    margin-bottom: 1.2rem;
+    font-size: 1.75rem;
 }
 
-/* Scroll Animation Classes */
+/* Scroll Animation System */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .reveal.active {
@@ -132,9 +240,10 @@ header {
 /* Footer */
 footer {
     text-align: center;
-    padding: 2rem;
-    background: var(--primary-color);
-    color: #94a3b8;
-    margin-top: 4rem;
-    font-size: 0.9rem;
+    padding: 3rem 2rem;
+    background: var(--primary-deep);
+    color: #94A3B8;
+    margin-top: 5rem;
+    font-size: 0.95rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
