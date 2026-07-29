@@ -14,5 +14,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll(); // Trigger once on load
+    revealOnScroll();
 });
