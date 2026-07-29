@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let i = 0; i < reveals.length; i++) {
             let windowHeight = window.innerHeight;
             let elementTop = reveals[i].getBoundingClientRect().top;
-            let elementVisible = 100;
+            let elementVisible = 120;
 
             if (elementTop < windowHeight - elementVisible) {
                 reveals[i].classList.add("active");
@@ -14,5 +14,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll();
+    revealOnScroll(); // Initial trigger on load
 });
